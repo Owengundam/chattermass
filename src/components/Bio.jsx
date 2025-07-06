@@ -3,13 +3,15 @@ import React from 'react';
 function Bio() {
   return (
     <section id="bio-section">
-      <h2>Personal Statement</h2>
+      <h2>Revolutionary AI-Driven Design</h2>
       <p className="bio">
-        Haiming Wang is an EDGE Architectural Technologies graduate student at SCI-Arc in Los Angeles, 
-        blending computational design, AI, and neuroscience to craft visionary, socially responsible architecture. 
-        With roots in Shanghai and a passion for merging art, science, and humanity, Haiming's work spans 
-        interactive data-scapes, generative agent-based facades, and ethical AI research that reimagines 
-        how buildings learn and respond to people and place.
+        ChatterMass is a revolutionary AI-driven architectural design tool that combines conversational AI 
+        with Unity-based ML-Agents for spatial optimization. The platform enables architects to use natural 
+        language commands to manipulate and optimize architectural massing, fundamentally changing how buildings 
+        are designed and iterated. With MVRDV expressing interest in both the technology and the developer, 
+        ChatterMass represents a significant commercial opportunity in the computational design space, 
+        positioned to become the industry standard for AI-assisted architectural massing and spatial 
+        program optimization.
       </p>
     </section>
   );

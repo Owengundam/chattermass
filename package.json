@@ -1,7 +1,7 @@
 {
-  "name": "owengundam.github.io",
+  "name": "chattermass",
   "version": "1.0.0",
-  "description": "Haiming Wang - Architectural Technologies Portfolio",
+  "description": "ChatterMass - Conversational AI for Architectural Massing",
   "main": "index.js",
   "scripts": {
     "dev": "vite",
