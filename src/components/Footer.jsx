@@ -1,15 +1,26 @@
 import React from 'react';
 
 function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
-    <footer id="contact">
-      <h2>Contact & Partnerships</h2>
-      <p>Business inquiries: <a href="mailto:owewhm@gmail.com">owewhm@gmail.com</a></p>
-      <p>Partnership opportunities | Commercial licensing | Enterprise solutions</p>
-      <p>Ready to transform your architectural design process with conversational AI</p>
-      <p>&copy; {currentYear} ChatterMass. All rights reserved.</p>
+    <footer className="section" id="contact">
+      <div className="section-header">
+        <h2 className="section-title">Contact</h2>
+      </div>
+      <div className="contact-info">
+        <span className="contact-label">Inquiries: </span>
+        <a
+          href="mailto:owewhm@gmail.com"
+          className="contact-link"
+        >
+          owewhm@gmail.com
+        </a>
+      </div>
+      <p className="contact-text">
+        Ready to transform your architectural design process with conversational AI
+      </p>
+      <p className="contact-text">
+        © 2025 chatterMASS. All rights reserved.
+      </p>
     </footer>
   );
 }

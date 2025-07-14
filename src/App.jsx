@@ -1,19 +1,22 @@
 import React from 'react';
-import Header from './components/Header';
-import Bio from './components/Bio';
-import TestVideo from './components/testvideo';
-import BodyOfWork from './components/BodyOfWork';
-import InterestsTools from './components/InterestsTools';
+import './styles.css';
+import Hero from './components/Hero';
+import ScrollingMask from './components/ScrollingMask';
+import ScrollingMask06 from './components/ScrollingMask06';
+import RevolutionaryDesign from './components/RevolutionaryDesign';
+import CoreFunctionalities from './components/CoreFunctionalities';
+import TechnicalDetails from './components/TechnicalDetails';
 import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="container">
-      <Header />
-      <Bio />
-      <TestVideo />
-      <BodyOfWork />
-      <InterestsTools />
+    <div className="app-container">
+      <Hero />
+      <ScrollingMask06 />
+      <ScrollingMask />
+      <RevolutionaryDesign />
+      <CoreFunctionalities />
+      <TechnicalDetails />
       <Footer />
     </div>
   );
