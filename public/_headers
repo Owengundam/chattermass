@@ -1,8 +1,26 @@
 /*
-  X-Frame-Options: DENY
   X-XSS-Protection: 1; mode=block
   X-Content-Type-Options: nosniff
-  Content-Security-Policy: default-src 'self'; connect-src 'self' https://api.dify.ai; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:;
+  Content-Security-Policy: default-src 'self'; connect-src 'self' https://api.dify.ai; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; frame-src 'self';
+
+/unity-demo/*
+  X-Frame-Options: ALLOWALL
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' blob:; worker-src 'self' blob:;
+
+/unity-demo/*.wasm.br
+  Content-Type: application/wasm
+  Content-Encoding: br
+
+/unity-demo/*.data.br
+  Content-Type: application/octet-stream
+  Content-Encoding: br
+
+/unity-demo/*.js.br
+  Content-Type: application/javascript; charset=utf-8
+  Content-Encoding: br
+
+/unity-demo/*.br
+  Content-Encoding: br
 
 /*.js
   Content-Type: application/javascript; charset=utf-8

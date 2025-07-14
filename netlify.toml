@@ -6,9 +6,36 @@
 [[headers]]
   for = "/*"
   [headers.values]
-    X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
+
+[[headers]]
+  for = "/unity-demo/*"
+  [headers.values]
+    X-Frame-Options = "ALLOWALL"
+
+[[headers]]
+  for = "/unity-demo/*.wasm.br"
+  [headers.values]
+    Content-Type = "application/wasm"
+    Content-Encoding = "br"
+
+[[headers]]
+  for = "/unity-demo/*.data.br"
+  [headers.values]
+    Content-Type = "application/octet-stream"
+    Content-Encoding = "br"
+
+[[headers]]
+  for = "/unity-demo/*.js.br"
+  [headers.values]
+    Content-Type = "application/javascript; charset=utf-8"
+    Content-Encoding = "br"
+
+[[headers]]
+  for = "/unity-demo/*.br"
+  [headers.values]
+    Content-Encoding = "br"
 
 [[headers]]
   for = "/*.js"
