@@ -19,7 +19,7 @@ function Footer() {
         Ready to transform your architectural design process with conversational AI
       </p>
       <p className="contact-text">
-        © 2025 chatterMASS. All rights reserved.
+        © 2025 chatMASS. All rights reserved.
       </p>
     </footer>
   );

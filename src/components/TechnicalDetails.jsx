@@ -4,136 +4,136 @@ function TechnicalDetails() {
   return (
     <section className="section three-column-section" id="details">
       <div className="three-columns">
-        {/* Technical Foundation */}
+        {/* Technical Implementation */}
         <div className="column green">
           <div className="column-header">
             <h3 className="column-title">
-              Technical Foundation
+              Technical Implementation
             </h3>
           </div>
           <ul className="feature-list">
             <li className="feature-item">
               <span className="feature-bullet">▹</span>
               <span className="feature-text">
-                Unity-based 3D visualization
+                Unity ML-Agents reinforcement learning
               </span>
             </li>
             <li className="feature-item">
               <span className="feature-bullet">▹</span>
               <span className="feature-text">
-                ML-Agents reinforcement learning
+                Custom MCP conversational interface
               </span>
             </li>
             <li className="feature-item">
               <span className="feature-bullet">▹</span>
               <span className="feature-text">
-                Custom MCP conversational control
+                JSON-driven program generation
               </span>
             </li>
             <li className="feature-item">
               <span className="feature-bullet">▹</span>
               <span className="feature-text">
-                JSON-driven procedural generation
+                Multi-modal evaluation system
               </span>
             </li>
             <li className="feature-item">
               <span className="feature-bullet">▹</span>
               <span className="feature-text">
-                Multi-modal evaluation systems
+                WebGL deployment compatibility
               </span>
             </li>
             <li className="feature-item">
               <span className="feature-bullet">▹</span>
               <span className="feature-text">
-                RenderTexture popup inspection
+                3D export and analysis tools
               </span>
             </li>
           </ul>
         </div>
 
-        {/* Market Position */}
+        {/* Architectural Systems */}
         <div className="column red">
           <div className="column-header">
             <h3 className="column-title">
-              Market Position
+              Architectural Systems
             </h3>
           </div>
           <ul className="feature-list">
             <li className="feature-item">
               <span className="feature-bullet">▹</span>
               <span className="feature-text">
-                Industry-leading AI integration
+                Tower, Courtyard, Slab typologies
               </span>
             </li>
             <li className="feature-item">
               <span className="feature-bullet">▹</span>
               <span className="feature-text">
-                MVRDV partnership interest
+                Spatial program compliance tracking
               </span>
             </li>
             <li className="feature-item">
               <span className="feature-bullet">▹</span>
               <span className="feature-text">
-                Commercial scalability focus
+                Agent grouping and manipulation
               </span>
             </li>
             <li className="feature-item">
               <span className="feature-bullet">▹</span>
               <span className="feature-text">
-                Design workflow integration
+                Multi-floor layout generation
               </span>
             </li>
             <li className="feature-item">
               <span className="feature-bullet">▹</span>
               <span className="feature-text">
-                Real-time optimization focus
+                Real-time layout optimization
               </span>
             </li>
             <li className="feature-item">
               <span className="feature-bullet">▹</span>
               <span className="feature-text">
-                Computational design innovation
+                Circulation element distribution
               </span>
             </li>
           </ul>
         </div>
 
-        {/* Why This Is Different */}
+        {/* Research Contributions */}
         <div className="column orange">
           <div className="column-header">
             <h3 className="column-title">
-              Why this is different
+              Research Contributions
             </h3>
           </div>
           <ul className="feature-list">
             <li className="feature-item">
               <span className="feature-bullet">▹</span>
               <span className="feature-text">
-                First conversational AI massing tool
+                Conversational AI for spatial control
               </span>
             </li>
             <li className="feature-item">
               <span className="feature-bullet">▹</span>
               <span className="feature-text">
-                Real-time optimization capabilities
+                Goal-oriented feedback loop design
               </span>
             </li>
             <li className="feature-item">
               <span className="feature-bullet">▹</span>
               <span className="feature-text">
-                Unity ML-Agents integration
+                Architectural typology algorithms
               </span>
             </li>
             <li className="feature-item">
               <span className="feature-bullet">▹</span>
               <span className="feature-text">
-                Natural language design commands
+                ML-Agents architectural application
               </span>
             </li>
             <li className="feature-item">
               <span className="feature-bullet">▹</span>
               <span className="feature-text">
-                Workflow integration ready
+                Natural language design workflow
               </span>
             </li>
           </ul>
