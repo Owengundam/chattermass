@@ -58,8 +58,14 @@
 
 # Force HTTPS redirect
 [[redirects]]
-  from = "http://:host/*"
-  to = "https://:host/:splat"
+  from = "http://chat-mass.com/*"
+  to = "https://chat-mass.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.chat-mass.com/*"  
+  to = "https://chat-mass.com/:splat"
   status = 301
   force = true
 
