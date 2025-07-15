@@ -8,6 +8,10 @@
   [headers.values]
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), payment=(), usb=()"
+    X-Frame-Options = "SAMEORIGIN"
 
 [[headers]]
   for = "/unity-demo/*"
@@ -51,6 +55,13 @@
   for = "/assets/*.js"
   [headers.values]
     Content-Type = "application/javascript; charset=utf-8"
+
+# Force HTTPS redirect
+[[redirects]]
+  from = "http://:host/*"
+  to = "https://:host/:splat"
+  status = 301
+  force = true
 
 [[redirects]]
   from = "/*"
