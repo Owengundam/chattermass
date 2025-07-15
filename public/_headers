@@ -9,7 +9,7 @@
 
 /unity-demo/*
   X-Frame-Options: ALLOWALL
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' blob:; worker-src 'self' blob:;
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob:; connect-src 'self' blob: data:; worker-src 'self' blob:; object-src 'self'; media-src 'self' blob:;
 
 /unity-demo/Build/*.js
   Content-Type: application/javascript; charset=utf-8
