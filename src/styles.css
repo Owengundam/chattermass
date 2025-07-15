@@ -102,6 +102,8 @@ html, body {
     border: var(--border-width) solid var(--border-color);
     aspect-ratio: 553 / 211; /* Match the image's aspect ratio */
     overflow: hidden; /* Prevents image from spilling out */
+    flex-shrink: 0; /* Prevent flexbox from shrinking this element */
+    min-height: 0; /* Ensure aspect ratio is maintained */
 }
 
 .hero-image {
@@ -128,37 +130,97 @@ html, body {
 }
 
 /* ===========================
-   Core Functionalities
+   UI Function Breakdown
    =========================== */
-.core-functionalities {
+.ui-breakdown-container {
     display: flex;
-    gap: calc(var(--spacing-unit) * 1.5);
+    flex-direction: column;
+    gap: var(--spacing-unit);
 }
 
-.functionality-card {
-    flex: 1;
+.breakdown-summary {
+    padding: var(--spacing-unit);
+    background-color: var(--chat-gray);
     border: var(--border-width) solid var(--border-color);
-    padding: calc(var(--spacing-unit) * 0.75);
-    min-height: 256px;
 }
 
-.functionality-card.green {
+.breakdown-summary p {
+    margin: 0;
+    font-size: var(--font-size-normal);
+    color: var(--chat-text);
+}
+
+.expandable-section {
+    border: var(--border-width) solid var(--border-color);
+}
+
+.expand-button {
+    width: 100%;
+    padding: var(--spacing-unit);
     background-color: var(--chat-green);
+    border: none;
+    border-bottom: var(--border-width) solid var(--border-color);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-main);
+    font-size: var(--font-size-normal);
+    font-weight: 500;
+    color: var(--chat-text);
+    transition: background-color 0.2s ease;
 }
 
-.functionality-card.red {
-    background-color: var(--chat-red);
-}
-
-.functionality-card.orange {
+.expand-button:hover {
     background-color: var(--chat-orange);
 }
 
-.card-inner {
+.expand-icon {
+    transition: transform 0.2s ease;
+}
+
+.expand-icon.rotated {
+    transform: rotate(180deg);
+}
+
+.expandable-content {
+    overflow: hidden;
+    contain: layout style; /* Isolate layout calculations */
+}
+
+.diagram-container {
+    padding: var(--spacing-unit);
     background-color: var(--chat-gray);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to top instead of center */
+}
+
+.breakdown-diagram {
+    max-width: 100%;
+    width: auto;
+    height: auto;
     border: var(--border-width) solid var(--border-color);
-    height: 100%;
-    width: 100%;
+    display: block; /* Ensure proper block display */
+}
+
+.breakdown-description {
+    padding: var(--spacing-unit);
+    background-color: var(--chat-blue);
+    border-top: var(--border-width) solid var(--border-color);
+}
+
+.breakdown-description h3 {
+    margin: 0 0 calc(var(--spacing-unit) / 2) 0;
+    font-size: var(--font-size-large);
+    font-weight: 600;
+    color: var(--chat-text);
+}
+
+.breakdown-description p {
+    margin: 0;
+    font-size: var(--font-size-normal);
+    color: var(--chat-text);
 }
 
 /* ===========================
@@ -171,6 +233,8 @@ html, body {
     z-index: 11; /* Above the hero section */
     pointer-events: none; /* Allow clicks to pass through to hero */
     /* Height will be set dynamically by JavaScript */
+    will-change: transform; /* Optimize for animations */
+    transform: translateZ(0); /* Force hardware acceleration */
 }
 
 .scrolling-mask-sticky-container {
@@ -215,6 +279,8 @@ html, body {
     position: absolute;
     padding: 0;
     border: none;
+    will-change: transform; /* Optimize for animations */
+    transform: translateZ(0); /* Force hardware acceleration */
     z-index: 10; /* Above the 05 mask (z-index: 10) */
     pointer-events: none; /* Allow clicks to pass through */
     /* Height will be set dynamically by JavaScript */
