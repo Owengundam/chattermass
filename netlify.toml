@@ -70,6 +70,13 @@
   status = 301
   force = true
 
+# Exclude Unity demo from SPA redirects
+[[redirects]]
+  from = "/unity-demo/*"
+  to = "/unity-demo/:splat"
+  status = 200
+
+# SPA routing for main site
 [[redirects]]
   from = "/*"
   to = "/index.html"
