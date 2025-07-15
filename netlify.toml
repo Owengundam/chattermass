@@ -17,7 +17,7 @@
   for = "/unity-demo/*"
   [headers.values]
     X-Frame-Options = "ALLOWALL"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob:; connect-src 'self' blob: data:; worker-src 'self' blob:; object-src 'self'; media-src 'self' blob:;"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob:; connect-src 'self' blob: data: https://*.ngrok-free.app https://*.ngrok.io https://api.dify.ai https://api.openai.com; worker-src 'self' blob:; object-src 'self'; media-src 'self' blob:;"
 
 # Unity WebGL MIME Type Headers
 [[headers]]
