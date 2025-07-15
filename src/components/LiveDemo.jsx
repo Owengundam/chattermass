@@ -33,9 +33,6 @@ function LiveDemo() {
         <h2 className="section-title">
           Interactive Demo
         </h2>
-        <p className="section-description">
-          Unity WebGL build demonstrating the conversational AI control system
-        </p>
       </div>
       <div className="demo-container">
         <div className="demo-wrapper">
