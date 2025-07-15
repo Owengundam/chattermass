@@ -7,33 +7,51 @@
   X-Frame-Options: SAMEORIGIN
   Content-Security-Policy: default-src 'self'; connect-src 'self' https://api.dify.ai https://api.openai.com; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; frame-src 'self';
 
-/unity-demo/*
-  X-Frame-Options: ALLOWALL
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob:; connect-src 'self' blob: data:; worker-src 'self' blob:; object-src 'self'; media-src 'self' blob:;
-
+# Unity WebGL MIME Types - Critical for proper loading
 /unity-demo/Build/*.js
-  Content-Type: application/javascript; charset=utf-8
+  Content-Type: application/javascript
 
-/unity-demo/*.wasm.br
+/unity-demo/Build/*.wasm
+  Content-Type: application/wasm
+
+/unity-demo/Build/*.data
+  Content-Type: application/octet-stream
+
+/unity-demo/Build/*.mem
+  Content-Type: application/octet-stream
+
+/unity-demo/Build/*.symbols.json
+  Content-Type: application/json
+
+# Unity Compressed Files
+/unity-demo/Build/*.js.gz
+  Content-Type: application/javascript
+  Content-Encoding: gzip
+
+/unity-demo/Build/*.wasm.gz
+  Content-Type: application/wasm
+  Content-Encoding: gzip
+
+/unity-demo/Build/*.data.gz
+  Content-Type: application/octet-stream
+  Content-Encoding: gzip
+
+/unity-demo/Build/*.js.br
+  Content-Type: application/javascript
+  Content-Encoding: br
+
+/unity-demo/Build/*.wasm.br
   Content-Type: application/wasm
   Content-Encoding: br
 
-/unity-demo/*.data.br
+/unity-demo/Build/*.data.br
   Content-Type: application/octet-stream
   Content-Encoding: br
 
-/unity-demo/*.js.br
-  Content-Type: application/javascript; charset=utf-8
-  Content-Encoding: br
+# Unity unityweb files (fallback decompression)
+/unity-demo/Build/*.unityweb
+  Content-Type: application/octet-stream
 
-/unity-demo/*.br
-  Content-Encoding: br
-
-/*.js
-  Content-Type: application/javascript; charset=utf-8
-
-/*.mjs
-  Content-Type: application/javascript; charset=utf-8
-
-/assets/*.js
-  Content-Type: application/javascript; charset=utf-8 
+/unity-demo/*
+  X-Frame-Options: ALLOWALL
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob:; connect-src 'self' blob: data:; worker-src 'self' blob:; object-src 'self'; media-src 'self' blob:; 

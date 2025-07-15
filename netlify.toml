@@ -19,10 +19,73 @@
     X-Frame-Options = "ALLOWALL"
     Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob:; connect-src 'self' blob: data:; worker-src 'self' blob:; object-src 'self'; media-src 'self' blob:;"
 
+# Unity WebGL MIME Type Headers
 [[headers]]
   for = "/unity-demo/Build/*.js"
   [headers.values]
-    Content-Type = "application/javascript; charset=utf-8"
+    Content-Type = "application/javascript"
+
+[[headers]]
+  for = "/unity-demo/Build/*.wasm"
+  [headers.values]
+    Content-Type = "application/wasm"
+
+[[headers]]
+  for = "/unity-demo/Build/*.data"
+  [headers.values]
+    Content-Type = "application/octet-stream"
+
+[[headers]]
+  for = "/unity-demo/Build/*.mem"
+  [headers.values]
+    Content-Type = "application/octet-stream"
+
+[[headers]]
+  for = "/unity-demo/Build/*.symbols.json"
+  [headers.values]
+    Content-Type = "application/json"
+
+# Unity Compressed Files
+[[headers]]
+  for = "/unity-demo/Build/*.js.gz"
+  [headers.values]
+    Content-Type = "application/javascript"
+    Content-Encoding = "gzip"
+
+[[headers]]
+  for = "/unity-demo/Build/*.wasm.gz"
+  [headers.values]
+    Content-Type = "application/wasm"
+    Content-Encoding = "gzip"
+
+[[headers]]
+  for = "/unity-demo/Build/*.data.gz"
+  [headers.values]
+    Content-Type = "application/octet-stream"
+    Content-Encoding = "gzip"
+
+[[headers]]
+  for = "/unity-demo/Build/*.js.br"
+  [headers.values]
+    Content-Type = "application/javascript"
+    Content-Encoding = "br"
+
+[[headers]]
+  for = "/unity-demo/Build/*.wasm.br"
+  [headers.values]
+    Content-Type = "application/wasm"
+    Content-Encoding = "br"
+
+[[headers]]
+  for = "/unity-demo/Build/*.data.br"
+  [headers.values]
+    Content-Type = "application/octet-stream"
+    Content-Encoding = "br"
+
+[[headers]]
+  for = "/unity-demo/Build/*.unityweb"
+  [headers.values]
+    Content-Type = "application/octet-stream"
 
 [[headers]]
   for = "/unity-demo/*.wasm.br"
