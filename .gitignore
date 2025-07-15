@@ -4,6 +4,8 @@ node_modules/
 # Build outputs
 dist/
 build/
+# Exception: Allow Unity Build directory
+!public/unity-demo/Build/
 
 # Environment files
 .env
