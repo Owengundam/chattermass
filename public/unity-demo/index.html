@@ -58,7 +58,7 @@
   </head>
   <body>
     <div id="unity-container">
-      <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
+      <canvas id="unity-canvas" width=1920 height=1080 tabindex="-1"></canvas>
       <div id="unity-loading-bar">
         <div id="unity-logo"></div>
         <div id="unity-progress-bar-empty">
@@ -88,8 +88,8 @@
         var containerWidth = container.clientWidth;
         var containerHeight = container.clientHeight;
         
-        // Maintain 16:10 aspect ratio (960:600)
-        var aspectRatio = 960 / 600;
+        // Maintain 16:9 aspect ratio
+        var aspectRatio = 16 / 9;
         var newWidth, newHeight;
         
         if (containerWidth / containerHeight > aspectRatio) {
