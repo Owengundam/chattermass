@@ -223,6 +223,90 @@ html, body {
     color: var(--chat-text);
 }
 
+/* Small collapsibles grid - responsive layout */
+.small-collapsibles-grid {
+    display: grid;
+    gap: var(--spacing-unit);
+    margin-bottom: var(--spacing-unit)/2;
+    
+    /* Mobile first: single column */
+    grid-template-columns: 1fr;
+}
+
+/* Desktop: three columns */
+@media (min-width: 768px) {
+    .small-collapsibles-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Small collapsible components */
+.small-expandable-section {
+    /* Removed border - will be on content instead */
+    /* No background or border to prevent empty space visualization */
+}
+
+.small-expand-button {
+    width: 100%;
+    padding: calc(var(--spacing-unit) * 0.75);
+    background-color: var(--chat-green);
+    border: var(--border-width) solid var(--border-color);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-main);
+    font-size: var(--font-size-small);
+    font-weight: 500;
+    color: var(--chat-text);
+    transition: background-color 0.2s ease;
+}
+
+.small-expand-button:hover {
+    background-color: var(--chat-orange);
+}
+
+.small-expandable-content {
+    overflow: hidden;
+    contain: layout style;
+    /* Border and background only visible when content is expanded */
+    border-left: var(--border-width) solid var(--border-color);
+    border-right: var(--border-width) solid var(--border-color);
+    border-bottom: var(--border-width) solid var(--border-color);
+    /* No top border to connect seamlessly with button */
+}
+
+.small-diagram-container {
+    padding: calc(var(--spacing-unit) * 0.75);
+    background-color: var(--chat-blue);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.small-breakdown-diagram {
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    max-height: 200px; /* Limit height for smaller components */
+    border: var(--border-width) solid var(--border-color);
+    display: block;
+    object-fit: contain; /* Maintain aspect ratio */
+}
+
+.small-breakdown-description {
+    padding: calc(var(--spacing-unit) * 0.75);
+    background-color: var(--chat-blue);
+    border-top: var(--border-width) solid var(--border-color);
+}
+
+.small-breakdown-description p {
+    margin: 0;
+    font-size: var(--font-size-small);
+    color: var(--chat-text);
+    line-height: 1.4;
+}
+
 /* ===========================
    Scrolling Mask Section
    =========================== */

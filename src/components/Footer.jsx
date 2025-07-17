@@ -12,7 +12,7 @@ function Footer() {
           href="mailto:owewhm@gmail.com"
           className="contact-link"
         >
-          owewhm@gmail.com
+          owenwhm@gmail.com
         </a>
       </div>
       <p className="contact-text">
