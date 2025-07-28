@@ -2,97 +2,105 @@
 import http.server
 import socketserver
 import os
-import brotli
-import gzip
-from urllib.parse import unquote
 
-class UnityWebGLHandler(http.server.SimpleHTTPRequestHandler):
+class UnityHandler(http.server.SimpleHTTPRequestHandler):
+    """HTTP Request Handler for Unity WebGL builds with Brotli compression support"""
+    
+    def end_headers(self):
+        """Set Content-Encoding: br for Brotli compressed files"""
+        if self.path.endswith('.br'):
+            self.send_header('Content-Encoding', 'br')
+        
+        # Add CORS headers for Unity WebGL
+        self.send_header('Cross-Origin-Embedder-Policy', 'require-corp')
+        self.send_header('Cross-Origin-Opener-Policy', 'same-origin')
+        
+        # Add cache control to prevent caching issues during development
+        self.send_header('Cache-Control', 'no-cache, no-store, must-revalidate')
+        self.send_header('Pragma', 'no-cache')
+        self.send_header('Expires', '0')
+        
+        super().end_headers()
+    
     def do_GET(self):
-        # Get the file path
+        """Handle GET requests with proper Content-Type and Content-Encoding for Unity files"""
         path = self.translate_path(self.path)
         
-        # Check if it's a .br file
-        if self.path.endswith('.br') and os.path.exists(path):
-            try:
-                # Read and decompress the Brotli file
+        # Handle Brotli compressed JavaScript files
+        if path.endswith('.js.br'):
+            if os.path.exists(path):
                 with open(path, 'rb') as f:
-                    compressed_data = f.read()
-                
-                decompressed_data = brotli.decompress(compressed_data)
-                
-                # Send response
+                    content = f.read()
                 self.send_response(200)
-                
-                # Set appropriate content type based on the original file
-                original_path = self.path[:-3]  # Remove .br extension
-                if original_path.endswith('.wasm'):
-                    self.send_header('Content-Type', 'application/wasm')
-                elif original_path.endswith('.js'):
-                    self.send_header('Content-Type', 'application/javascript')
-                elif original_path.endswith('.data'):
-                    self.send_header('Content-Type', 'application/octet-stream')
-                else:
-                    self.send_header('Content-Type', 'application/octet-stream')
-                
-                self.send_header('Content-Length', str(len(decompressed_data)))
-                self.send_header('Cache-Control', 'no-cache')
+                self.send_header('Content-Type', 'application/javascript')
                 self.end_headers()
-                
-                # Send the decompressed data
-                self.wfile.write(decompressed_data)
-                return
-                
-            except Exception as e:
-                print(f"Error decompressing {path}: {e}")
-                self.send_error(500, f"Error decompressing file: {e}")
+                self.wfile.write(content)
                 return
         
-        # Check if it's a .gz file
-        elif self.path.endswith('.gz') and os.path.exists(path):
-            try:
-                # Read and decompress the gzip file
-                with gzip.open(path, 'rb') as f:
-                    decompressed_data = f.read()
-                
-                # Send response
+        # Handle Brotli compressed WebAssembly files
+        elif path.endswith('.wasm.br'):
+            if os.path.exists(path):
+                with open(path, 'rb') as f:
+                    content = f.read()
                 self.send_response(200)
-                
-                # Set appropriate content type based on the original file
-                original_path = self.path[:-3]  # Remove .gz extension
-                if original_path.endswith('.wasm'):
-                    self.send_header('Content-Type', 'application/wasm')
-                elif original_path.endswith('.js'):
-                    self.send_header('Content-Type', 'application/javascript')
-                elif original_path.endswith('.data'):
-                    self.send_header('Content-Type', 'application/octet-stream')
-                else:
-                    self.send_header('Content-Type', 'application/octet-stream')
-                
-                self.send_header('Content-Length', str(len(decompressed_data)))
-                self.send_header('Cache-Control', 'no-cache')
+                self.send_header('Content-Type', 'application/wasm')
                 self.end_headers()
-                
-                # Send the decompressed data
-                self.wfile.write(decompressed_data)
-                return
-                
-            except Exception as e:
-                print(f"Error decompressing {path}: {e}")
-                self.send_error(500, f"Error decompressing file: {e}")
+                self.wfile.write(content)
                 return
         
-        # For all other files, use the default handler
+        # Handle Brotli compressed data files
+        elif path.endswith('.data.br'):
+            if os.path.exists(path):
+                with open(path, 'rb') as f:
+                    content = f.read()
+                self.send_response(200)
+                self.send_header('Content-Type', 'application/octet-stream')
+                self.end_headers()
+                self.wfile.write(content)
+                return
+        
+        # Handle other Brotli compressed files
+        elif path.endswith('.br'):
+            if os.path.exists(path):
+                with open(path, 'rb') as f:
+                    content = f.read()
+                self.send_response(200)
+                self.send_header('Content-Type', 'application/octet-stream')
+                self.end_headers()
+                self.wfile.write(content)
+                return
+        
+        # Handle regular WebAssembly files
+        elif path.endswith('.wasm'):
+            if os.path.exists(path):
+                with open(path, 'rb') as f:
+                    content = f.read()
+                self.send_response(200)
+                self.send_header('Content-Type', 'application/wasm')
+                self.end_headers()
+                self.wfile.write(content)
+                return
+        
+        # For all other files, use the default behavior
         super().do_GET()
 
-PORT = 8000
-Handler = UnityWebGLHandler
-
-print(f"Starting Unity WebGL server on port {PORT}")
-print(f"Server will decompress .br and .gz files automatically")
-print(f"Open http://localhost:{PORT} in your browser")
-
-with socketserver.TCPServer(("", PORT), Handler) as httpd:
-    try:
-        httpd.serve_forever()
-    except KeyboardInterrupt:
-        print("\nServer stopped.") 
+if __name__ == "__main__":
+    PORT = 8000
+    
+    with socketserver.TCPServer(("", PORT), UnityHandler) as httpd:
+        print(f"🎮 Unity WebGL Server running at:")
+        print(f"   Local: http://localhost:{PORT}")
+        print(f"   Network: http://[your-ip]:{PORT}")
+        print()
+        print("✅ Brotli compression support enabled")
+        print("✅ CORS headers configured for Unity WebGL")
+        print("✅ Cache headers disabled for development")
+        print()
+        print("🌐 Open your browser and go to: http://localhost:8000")
+        print("🛑 Press Ctrl+C to stop the server")
+        
+        try:
+            httpd.serve_forever()
+        except KeyboardInterrupt:
+            print("\n🛑 Shutting down the server...")
+            httpd.shutdown() 
