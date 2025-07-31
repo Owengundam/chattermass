@@ -16,11 +16,11 @@
    =========================== */
 :root {
     /* ChatterMass colors */
-    --chat-blue: #85D3E1;
-    --chat-green: #A3CB38;
-    --chat-red: #ED4C67;
-    --chat-orange: #F79F1F;
-    --chat-gray: #F0F0F0;
+    --chat-blue: #c8ffff;
+    --chat-green: #cef562;
+    --chat-red: #f86880;
+    --chat-orange: #f59251;
+    --chat-gray: #ffffff;
     --chat-text: #333333;
     --border-color: #000000;
     
