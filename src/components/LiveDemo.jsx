@@ -53,7 +53,7 @@ function LiveDemo() {
             </div>
           </div>
         )}
-        <div className="demo-controls">
+        <div>
           <p className="demo-instructions">
             The demo shows spatial program generation, agent manipulation, and typology-based layout systems. 
             Natural language commands control agent behavior through the MCP integration.

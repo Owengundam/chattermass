@@ -3,6 +3,11 @@ import React from 'react';
 function TechnicalDetails() {
   return (
     <section className="section three-column-section" id="details">
+      <div className="section-header">
+        <h2 className="section-title">
+          chatMASS Technical Details
+        </h2>
+      </div>
       <div className="three-columns">
         {/* Technical Implementation */}
         <div className="column green">

@@ -1,52 +1,27 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 
 function CoreFunctionalities() {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [smallCollapsibles, setSmallCollapsibles] = useState({
-    F1: false,
-    F2: false,
-    F3: false
-  });
-  
+  const [isExpanded, setIsExpanded] = React.useState(false);
   const expandableRef = useRef(null);
   const contentRef = useRef(null);
-  
-  // Individual refs for each small collapsible
-  const f1Ref = useRef(null);
-  const f2Ref = useRef(null);
-  const f3Ref = useRef(null);
 
   useEffect(() => {
-    // Initialize GSAP: set initial state to collapsed
+    // Initialize GSAP: set initial state to collapsed for main
     gsap.set(expandableRef.current, { height: 0, overflow: 'hidden' });
-    
-    // Initialize small collapsibles with more explicit targeting
-    if (f1Ref.current) {
-      gsap.set(f1Ref.current, { height: 0, overflow: 'hidden' });
-    }
-    if (f2Ref.current) {
-      gsap.set(f2Ref.current, { height: 0, overflow: 'hidden' });
-    }
-    if (f3Ref.current) {
-      gsap.set(f3Ref.current, { height: 0, overflow: 'hidden' });
-    }
   }, []);
 
   const toggleExpanded = () => {
     if (!isExpanded) {
-      // Expand animation
       gsap.to(expandableRef.current, {
         height: 'auto',
         duration: 0.6,
         ease: 'power2.out',
         onComplete: () => {
-          // Allow content to flow naturally after animation
           gsap.set(expandableRef.current, { height: 'auto' });
         }
       });
     } else {
-      // Collapse animation
       gsap.to(expandableRef.current, {
         height: 0,
         duration: 0.5,
@@ -54,51 +29,6 @@ function CoreFunctionalities() {
       });
     }
     setIsExpanded(!isExpanded);
-  };
-
-  const toggleSmallCollapsible = (key) => {
-    // Get the correct ref for the clicked collapsible
-    const refMap = {
-      F1: f1Ref,
-      F2: f2Ref,
-      F3: f3Ref
-    };
-    
-    const targetRef = refMap[key];
-    const isCurrentlyExpanded = smallCollapsibles[key];
-    
-    if (!targetRef?.current) {
-      console.warn(`Ref for ${key} not found`);
-      return;
-    }
-    
-    // Debug: Log which element is being animated
-    console.log(`Toggling ${key}, currently expanded: ${isCurrentlyExpanded}`, targetRef.current);
-    
-    if (!isCurrentlyExpanded) {
-      // Expand this specific collapsible only
-      gsap.to(targetRef.current, {
-        height: 'auto',
-        duration: 0.4,
-        ease: 'power2.out',
-        onComplete: () => {
-          gsap.set(targetRef.current, { height: 'auto' });
-        }
-      });
-    } else {
-      // Collapse this specific collapsible only
-      gsap.to(targetRef.current, {
-        height: 0,
-        duration: 0.3,
-        ease: 'power2.in'
-      });
-    }
-    
-    // Update only the state for this specific collapsible
-    setSmallCollapsibles(prev => ({
-      ...prev,
-      [key]: !isCurrentlyExpanded
-    }));
   };
 
   return (
@@ -110,29 +40,13 @@ function CoreFunctionalities() {
       </div>
       
       <div className="ui-breakdown-container">
-        {/* Three smaller collapsibles in responsive grid */}
+        {/* Three always-expanded sections in responsive grid */}
         <div className="small-collapsibles-grid">
-          <div className="small-expandable-section">
-            <button 
-              className="small-expand-button"
-              onClick={() => toggleSmallCollapsible('F1')}
-              aria-expanded={smallCollapsibles.F1}
-            >
+          <div>
+            <div className="small-expand-button" style={{ cursor: 'default', pointerEvents: 'none' }}>
               <span>Knowledge Base</span>
-              <svg 
-                className={`expand-icon ${smallCollapsibles.F1 ? 'rotated' : ''}`}
-                width="20" 
-                height="20" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="2"
-              >
-                <polyline points="6,9 12,15 18,9"></polyline>
-              </svg>
-            </button>
-            
-            <div ref={f1Ref} className="small-expandable-content">
+            </div>
+            <div className="small-expandable-content">
               <div className="small-diagram-container">
                 <img 
                   src="/images/corefunction1.png"
@@ -146,27 +60,11 @@ function CoreFunctionalities() {
             </div>
           </div>
           
-          <div className="small-expandable-section">
-            <button 
-              className="small-expand-button"
-              onClick={() => toggleSmallCollapsible('F2')}
-              aria-expanded={smallCollapsibles.F2}
-            >
+          <div>
+            <div className="small-expand-button" style={{ cursor: 'default', pointerEvents: 'none' }}>
               <span>Agentic Massing Design</span>
-              <svg 
-                className={`expand-icon ${smallCollapsibles.F2 ? 'rotated' : ''}`}
-                width="20" 
-                height="20" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="2"
-              >
-                <polyline points="6,9 12,15 18,9"></polyline>
-              </svg>
-            </button>
-            
-            <div ref={f2Ref} className="small-expandable-content">
+            </div>
+            <div className="small-expandable-content">
               <div className="small-diagram-container">
                 <img 
                   src="/images/corefunction2.png"
@@ -180,27 +78,11 @@ function CoreFunctionalities() {
             </div>
           </div>
           
-          <div className="small-expandable-section">
-            <button 
-              className="small-expand-button"
-              onClick={() => toggleSmallCollapsible('F3')}
-              aria-expanded={smallCollapsibles.F3}
-            >
+          <div>
+            <div className="small-expand-button" style={{ cursor: 'default', pointerEvents: 'none' }}>
               <span>Typology</span>
-              <svg 
-                className={`expand-icon ${smallCollapsibles.F3 ? 'rotated' : ''}`}
-                width="20" 
-                height="20" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="2"
-              >
-                <polyline points="6,9 12,15 18,9"></polyline>
-              </svg>
-            </button>
-            
-            <div ref={f3Ref} className="small-expandable-content">
+            </div>
+            <div className="small-expandable-content">
               <div className="small-diagram-container">
                 <img 
                   src="/images/corefunction3.png"
@@ -238,17 +120,17 @@ function CoreFunctionalities() {
           
           <div ref={expandableRef} className="expandable-content">
             <div ref={contentRef}>
+              <div className="breakdown-description">
+                <h3>Interface Components</h3>
+                <p>The interface demonstrates real-time architectural massing capabilities with integrated agent-based programming, 
+                   spatial analysis tools, and interactive design controls for complex urban planning scenarios.</p>
+              </div>
               <div className="diagram-container">
                 <img 
                   src="/images/diagram/diagram-07.png" 
                   alt="UI Function Breakdown - Detailed interface analysis showing massing tools, agent controls, and spatial programming features"
                   className="breakdown-diagram"
                 />
-              </div>
-              <div className="breakdown-description">
-                <h3>Interface Components</h3>
-                <p>The interface demonstrates real-time architectural massing capabilities with integrated agent-based programming, 
-                   spatial analysis tools, and interactive design controls for complex urban planning scenarios.</p>
               </div>
             </div>
           </div>
@@ -258,4 +140,4 @@ function CoreFunctionalities() {
   );
 }
 
-export default CoreFunctionalities; 
+export default CoreFunctionalities;
