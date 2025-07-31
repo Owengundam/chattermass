@@ -13,8 +13,8 @@ function App() {
   return (
     <div className="app-container">
       <Hero />
-      <ScrollingMask06 />
-      <ScrollingMask />
+      {/* <ScrollingMask06 /> */}
+      {/* <ScrollingMask /> */}
       <RevolutionaryDesign />
       <CoreFunctionalities />
       <LiveDemo />
